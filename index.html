@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TFO Creative Studio</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #050606;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  padding: 42px 70px;
+  background:
+    linear-gradient(to bottom, #030303 0%, #0b0d0d 55%, #202626 100%);
+}
+
+/* header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 3;
+}
+
+.logo {
+  width: 90px;
+  text-align: center;
+}
+
+.logo-mark {
+  width: 78px;
+  height: 78px;
+  margin-bottom: 12px;
+  background:
+    linear-gradient(135deg, #ddd 0 35%, transparent 36%),
+    linear-gradient(45deg, #777 0 35%, transparent 36%),
+    linear-gradient(135deg, transparent 45%, #d00018 46% 70%, transparent 71%);
+  border-radius: 4px;
+}
+
+.logo-text {
+  font-size: 7px;
+  letter-spacing: 4px;
+  font-weight: 700;
+}
+
+.logo-text span {
+  color: #d60019;
+}
+
+.nav {
+  display: flex;
+  gap: 52px;
+  padding-top: 2px;
+}
+
+.nav a {
+  color: #e0001b;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 5px;
+}
+
+/* decoration lines */
+.cross {
+  position: absolute;
+  left: 156px;
+  top: 0;
+  width: 1px;
+  height: 278px;
+  background: #b00019;
+}
+
+.cross::after {
+  content: "";
+  position: absolute;
+  top: 206px;
+  left: -12px;
+  width: 136px;
+  height: 1px;
+  background: #b00019;
+}
+
+/* main */
+.content {
+  position: relative;
+  z-index: 2;
+  margin-left: 120px;
+  margin-top: 42px;
+}
+
+.label {
+  color: #e0001b;
+  font-size: 13px;
+  letter-spacing: 10px;
+  font-weight: 700;
+  margin-left: 135px;
+  margin-bottom: 28px;
+}
+
+.title {
+  font-size: clamp(76px, 8vw, 116px);
+  line-height: 0.92;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.title .gray {
+  color: #777b7e;
+}
+
+.title .red {
+  color: #d60019;
+}
+
+.lead {
+  margin-top: 26px;
+  color: #bfc0c1;
+  font-size: 20px;
+  line-height: 1.8;
+  font-weight: 700;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 26px;
+  padding: 14px 48px;
+  border: 2px solid #d60019;
+  color: #d60019;
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 8px;
+  font-weight: 700;
+}
+
+/* large background TFO */
+.bg-tfo {
+  position: absolute;
+  left: -18px;
+  bottom: 92px;
+  font-size: 170px;
+  font-weight: 900;
+  letter-spacing: -12px;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(214, 0, 25, 0.35);
+  z-index: 1;
+}
+
+/* right outline mark */
+.outline-mark {
+  position: absolute;
+  right: -80px;
+  bottom: -70px;
+  width: 520px;
+  height: 380px;
+  border: 1px solid rgba(214, 0, 25, 0.35);
+  transform: skewY(-32deg);
+  opacity: 0.75;
+}
+
+.outline-mark::before,
+.outline-mark::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(214, 0, 25, 0.35);
+}
+
+.outline-mark::before {
+  width: 220px;
+  height: 120px;
+  left: 80px;
+  top: 95px;
+}
+
+.outline-mark::after {
+  width: 300px;
+  height: 80px;
+  right: 30px;
+  bottom: 70px;
+}
+
+/* scroll */
+.scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  color: #e0001b;
+  font-size: 13px;
+  letter-spacing: 9px;
+  z-index: 3;
+}
+
+.scroll::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 68px;
+  background: #e0001b;
+  margin: 12px auto 0;
+}
+
+.arrow {
+  position: absolute;
+  left: 50%;
+  bottom: 7px;
+  width: 9px;
+  height: 9px;
+  border-right: 1px solid #e0001b;
+  border-bottom: 1px solid #e0001b;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .hero {
+    padding: 28px;
+  }
+
+  .nav {
+    gap: 22px;
+  }
+
+  .nav a {
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+
+  .content {
+    margin-left: 0;
+    margin-top: 100px;
+  }
+
+  .label {
+    margin-left: 0;
+    letter-spacing: 6px;
+  }
+
+  .lead {
+    font-size: 16px;
+  }
+
+  .outline-mark {
+    opacity: 0.25;
+  }
+}
+</style>
+</head>
+
+<body>
+  <section class="hero">
+    <header class="header">
+      <div class="logo">
+        <div class="logo-mark"></div>
+        <div class="logo-text">CREATIVE <span>STUDIO</span></div>
+      </div>
+
+      <nav class="nav">
+        <a href="#">Works</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+      </nav>
+    </header>
+
+    <div class="cross"></div>
+
+    <main class="content">
+      <div class="label">TFO CREATIVE STUDIO</div>
+
+      <h1 class="title">
+        CREATE<br>
+        <span class="gray">YOUR</span><br>
+        <span class="red">VISION</span>
+      </h1>
+
+      <p class="lead">
+        AI時代の新しい価値を創造します<br>
+        We create new value for the AI era.
+      </p>
+
+      <a href="#" class="btn">WORKS</a>
+    </main>
+
+    <div class="bg-tfo">TFO</div>
+    <div class="outline-mark"></div>
+
+    <div class="scroll">scroll</div>
+    <div class="arrow"></div>
+  </section>
+</body>
+</html>
