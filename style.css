@@ -1185,3 +1185,48 @@ body {
     letter-spacing: 6px;
   }
 }
+
+/* ===========================
+   Touch device overrides
+   @media (hover: none) = タッチデバイス（スマホ・タブレット）では
+   ホバーが使えないため、ホバー後の色をデフォルトで適用する
+   =========================== */
+@media (hover: none) {
+
+  /* フッター ナビリンク */
+  .footer-nav a {
+    color: var(--lead-text);
+  }
+
+  /* フッター著作権テキスト */
+  .footer-copy {
+    color: var(--lead-text);
+  }
+
+  /* フッター back-to-top */
+  .back-to-top {
+    opacity: 1;
+  }
+
+  /* サービス一覧 — 箇条書きテキスト */
+  .service-body ul li {
+    color: var(--lead-text);
+  }
+
+  /* サービス一覧 — 番号 */
+  .service-index {
+    color: var(--red);
+  }
+
+  /* Valueカード — 番号 */
+  .value-num {
+    color: var(--red);
+  }
+
+  /* Valueカード — ボーダー */
+  .value-card {
+    border-top-color: var(--red);
+    background: #111414;
+  }
+
+}
