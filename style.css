@@ -283,7 +283,7 @@ body {
 
 .title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(76px, 8vw, 116px);
+  font-size: clamp(76px, 8vw, 200px);
   line-height: 0.92;
   letter-spacing: 2px;
   overflow: hidden;
@@ -439,7 +439,7 @@ body {
 
 .section-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(48px, 5vw, 72px);
+  font-size: clamp(48px, 5vw, 60px);
   line-height: 1.0;
   letter-spacing: 2px;
 }
