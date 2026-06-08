@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>電子公告 — TFO Creative Studio</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ── Page-specific overrides ── */
+    html, body { overflow-x: hidden; }
+
+    .announces-page {
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #030303 0%, #0b0d0d 60%, #111414 100%);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Minimal header ── */
+    .ann-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 36px 70px;
+      position: relative;
+      z-index: 10;
+      border-bottom: 1px solid #111414;
+    }
+
+    .ann-logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+    }
+
+    .ann-logo img {
+      width: 52px;
+      height: auto;
+    }
+
+    .ann-logo-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: var(--white);
+    }
+
+    .ann-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 5px;
+      font-weight: 700;
+      color: var(--red);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .ann-back:hover { opacity: 0.7; }
+
+    .ann-back svg {
+      transition: transform 0.2s;
+    }
+
+    .ann-back:hover svg { transform: translateX(-3px); }
+
+    /* ── Main content ── */
+    .ann-main {
+      flex: 1;
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 80px 70px 120px;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--muted);
+      margin-bottom: 52px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease 0.2s forwards;
+    }
+
+    .breadcrumb a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb a:hover { color: var(--red); }
+
+    .breadcrumb-sep {
+      color: #2a2e2e;
+      font-size: 14px;
+    }
+
+    .breadcrumb-current { color: var(--red); }
+
+    /* Page heading */
+    .ann-heading-wrap {
+      margin-bottom: 64px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+    }
+
+    .ann-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 10px;
+      color: var(--red);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .ann-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 6vw, 80px);
+      line-height: 0.95;
+      letter-spacing: 3px;
+      margin-bottom: 24px;
+    }
+
+    .ann-subtitle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      letter-spacing: 3px;
+      color: var(--gray-text);
+      font-weight: 700;
+      border-left: 3px solid var(--red-line);
+      padding-left: 16px;
+    }
+
+    /* Legal note */
+    .ann-legal-note {
+      background: #0d0f0f;
+      border: 1px solid #1a1e1e;
+      border-left: 3px solid var(--red-line);
+      padding: 20px 24px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 52px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease 0.55s forwards;
+    }
+
+    .ann-legal-note strong {
+      color: var(--lead-text);
+    }
+
+    /* Status box */
+    .ann-status-box {
+      position: relative;
+      background: #080a0a;
+      border: 1px solid #1a1e1e;
+      padding: 72px 48px;
+      text-align: center;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.6s forwards;
+    }
+
+    /* Corner accents */
+    .ann-status-box::before,
+    .ann-status-box::after {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 24px;
+    }
+
+    .ann-status-box::before {
+      top: -1px; left: -1px;
+      border-top: 2px solid var(--red);
+      border-left: 2px solid var(--red);
+    }
+
+    .ann-status-box::after {
+      bottom: -1px; right: -1px;
+      border-bottom: 2px solid var(--red);
+      border-right: 2px solid var(--red);
+    }
+
+    .ann-status-box .corner-tr,
+    .ann-status-box .corner-bl {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+    }
+
+    .ann-status-box .corner-tr {
+      top: -1px; right: -1px;
+      border-top: 2px solid var(--red);
+      border-right: 2px solid var(--red);
+    }
+
+    .ann-status-box .corner-bl {
+      bottom: -1px; left: -1px;
+      border-bottom: 2px solid var(--red);
+      border-left: 2px solid var(--red);
+    }
+
+    /* Background TFO watermark */
+    .ann-watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 200px;
+      letter-spacing: -12px;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(214,0,25,0.05);
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .ann-status-icon {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--red-line);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      position: relative;
+      animation: iconPulse 3s ease-in-out infinite 1.5s;
+    }
+
+    .ann-status-icon svg {
+      opacity: 0.6;
+    }
+
+    @keyframes iconPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(214,0,25,0); }
+      50%       { box-shadow: 0 0 0 8px rgba(214,0,25,0.08); }
+    }
+
+    .ann-status-ja {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--lead-text);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .ann-status-en {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(32px, 4vw, 48px);
+      letter-spacing: 8px;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(214,0,25,0.5);
+      position: relative;
+      animation: flicker 6s infinite 2s;
+    }
+
+    .ann-status-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      margin-right: 10px;
+      vertical-align: middle;
+      animation: dotBlink 1.6s ease-in-out infinite;
+    }
+
+    @keyframes dotBlink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.3; transform: scale(0.7); }
+    }
+
+    /* Info table */
+    .ann-info {
+      margin-top: 52px;
+      border-top: 1px solid #1a1e1e;
+      opacity: 0;
+      animation: fadeIn 0.6s ease 1.0s forwards;
+    }
+
+    .ann-info-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0;
+      border-bottom: 1px solid #111414;
+      transition: background 0.2s;
+    }
+
+    .ann-info-row:hover { background: rgba(214,0,25,0.02); }
+
+    .ann-info-th {
+      padding: 18px 0;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      font-weight: 700;
+      color: var(--red);
+    }
+
+    .ann-info-td {
+      padding: 18px 0;
+      font-size: 14px;
+      color: var(--lead-text);
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    .ann-footer {
+      border-top: 1px solid #111414;
+      padding: 28px 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ann-footer-copy {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    .ann-footer-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .ann-footer-link:hover { color: var(--red); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .ann-header {
+        padding: 24px 24px;
+      }
+
+      .ann-logo-text { display: none; }
+
+      .ann-main {
+        padding: 52px 24px 80px;
+      }
+
+      .ann-status-box {
+        padding: 52px 24px;
+      }
+
+      .ann-watermark { font-size: 120px; }
+
+      .ann-info-row {
+        grid-template-columns: 140px 1fr;
+      }
+
+      .ann-footer {
+        padding: 24px;
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="announces-page">
+
+    <!-- Header -->
+    <header class="ann-header">
+      <a href="/" class="ann-logo">
+        <img src="/pic/logo1.svg" alt="TFO Logo" />
+        <span class="ann-logo-text">TFO CREATIVE STUDIO</span>
+      </a>
+      <a href="/" class="ann-back">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        BACK TO TOP
+      </a>
+    </header>
+
+    <!-- Main -->
+    <main class="ann-main">
+
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="/">TOP</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">電子公告</span>
+      </div>
+
+      <!-- Heading -->
+      <div class="ann-heading-wrap">
+        <div class="ann-label">LEGAL NOTICES</div>
+        <h1 class="ann-title">電子公告<span class="red">.</span></h1>
+        <p class="ann-subtitle">Electronic Public Notice</p>
+      </div>
+
+      <!-- Legal note -->
+      <div class="ann-legal-note">
+        本ページは、<strong>会社法第939条第1項</strong>に基づく電子公告のページです。<br>
+        TFOクリエイティブスタジオ合同会社の決算公告その他の法定公告を掲載します。
+      </div>
+
+      <!-- Status box -->
+      <div class="ann-status-box">
+        <div class="corner-tr"></div>
+        <div class="corner-bl"></div>
+        <div class="ann-watermark">TFO</div>
+
+        <div class="ann-status-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 3v7l4 4" stroke="#d60019" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="11" cy="11" r="9" stroke="#d60019" stroke-width="1.5"/>
+          </svg>
+        </div>
+
+        <p class="ann-status-ja">
+          <span class="ann-status-dot"></span>現在掲載中の公告はありません
+        </p>
+        <p class="ann-status-en">COMING SOON</p>
+      </div>
+
+      <!-- Info table -->
+      <div class="ann-info">
+        <div class="ann-info-row">
+          <div class="ann-info-th">会社名</div>
+          <div class="ann-info-td">TFOクリエイティブスタジオ合同会社</div>
+        </div>
+        <div class="ann-info-row">
+          <div class="ann-info-th">公告の方法</div>
+          <div class="ann-info-td">電子公告（本ページ）</div>
+        </div>
+        <div class="ann-info-row">
+          <div class="ann-info-th">公告URL</div>
+          <div class="ann-info-td">https://tfo-creative.studio/announces</div>
+        </div>
+        <div class="ann-info-row">
+          <div class="ann-info-th">公告の種類</div>
+          <div class="ann-info-td">決算公告（貸借対照表の要旨）その他法定公告</div>
+        </div>
+        <div class="ann-info-row">
+          <div class="ann-info-th">掲載状況</div>
+          <div class="ann-info-td">現在掲載中の公告はありません</div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="ann-footer">
+      <span class="ann-footer-copy">&copy; 2025 TFO Creative Studio. All rights reserved.</span>
+      <a href="/" class="ann-footer-link">tfo-creative.studio</a>
+    </footer>
+
+  </div>
+</body>
+</html>
