@@ -200,6 +200,37 @@ body {
   pointer-events: auto;
 }
 
+.mobile-menu-close {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: 1px solid rgba(214, 0, 25, 0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.mobile-menu-close:hover {
+  border-color: var(--red);
+  background: rgba(214, 0, 25, 0.1);
+}
+
+.mobile-menu-close span {
+  position: absolute;
+  width: 20px;
+  height: 1.5px;
+  background: var(--red);
+}
+
+.mobile-menu-close span:nth-child(1) { transform: rotate(45deg); }
+.mobile-menu-close span:nth-child(2) { transform: rotate(-45deg); }
+
 .mobile-menu a {
   color: var(--white);
   text-decoration: none;

@@ -42,6 +42,12 @@ hamburger.addEventListener('click', () => {
   menuOpen ? closeMobileMenu() : openMobileMenu();
 });
 
+// Close button inside the mobile menu
+const mobileMenuClose = document.querySelector('.mobile-menu-close');
+if (mobileMenuClose) {
+  mobileMenuClose.addEventListener('click', closeMobileMenu);
+}
+
 // Close on Escape key
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && menuOpen) closeMobileMenu();
