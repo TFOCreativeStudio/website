@@ -6,56 +6,351 @@
   <title>TFO Creative Studio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
- 
+
 <body>
-  <section class="hero">
- 
-    <!-- ── Header ── -->
+
+  <!-- ==============================
+       HERO
+  ============================== -->
+  <section class="hero" id="top">
+
     <header class="header">
       <div class="logo">
         <div class="logo-mark">
           <img src="pic/logo1.svg" alt="TFO Logo" />
         </div>
       </div>
- 
       <nav class="nav">
-        <a href="#">Works</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact</a>
+        <a href="#philosophy">Philosophy</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </nav>
+      <button class="hamburger" aria-label="メニュー" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </header>
- 
-    <!-- ── Decorative cross lines ── -->
+
+    <div class="mobile-menu" aria-hidden="true">
+      <a href="#philosophy">Philosophy</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+
     <div class="cross"></div>
- 
-    <!-- ── Main content ── -->
+
     <main class="content">
       <div class="label">TFO CREATIVE STUDIO</div>
- 
       <h1 class="title">
         <span class="title-line"><span class="title-word">CREATE</span></span>
         <span class="title-line"><span class="title-word gray">YOUR</span></span>
         <span class="title-line"><span class="title-word red">VISION</span></span>
       </h1>
- 
       <p class="lead">
         AI時代の新しい価値を創造します<br />
         We create new value for the AI era.
       </p>
- 
-      <a href="#" class="btn">WORKS</a>
+      <a href="#philosophy" class="btn hero-btn">DISCOVER</a>
     </main>
- 
-    <!-- ── Background decoration ── -->
+
     <div class="bg-tfo">TFO</div>
- 
     <div class="outline-mark">
       <img src="pic/logo_outline.svg" alt="" aria-hidden="true" />
     </div>
- 
-    <!-- ── Scroll indicator ── -->
-    <div class="scroll">scroll</div>
- 
+
+    <div class="scroll-indicator">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+
   </section>
+
+
+  <!-- ==============================
+       PHILOSOPHY
+  ============================== -->
+  <section class="section philosophy-section" id="philosophy">
+    <div class="section-inner">
+
+      <div class="section-label reveal">PHILOSOPHY</div>
+
+      <div class="philosophy-grid">
+        <div class="philosophy-left reveal-left">
+          <h2 class="section-title">
+            次の時代の<br><span class="red">価値</span>を<br>形にする
+          </h2>
+          <div class="red-bar"></div>
+        </div>
+        <div class="philosophy-right">
+          <p class="philosophy-lead reveal-up">
+            これからの社会では、AIがすべての人の<em>"標準装備"</em>になります。
+          </p>
+          <p class="philosophy-body reveal-up" data-delay="0.15">
+            会社員の働き方は大きく変わり、誰もがAIを使いこなし、生産性を高め、
+            より難しい課題に挑戦できる時代が訪れます。<br>
+            人々がステップアップし、自分の価値を高め、
+            より自由で創造的な働き方を実現できる未来。
+          </p>
+          <p class="philosophy-body reveal-up" data-delay="0.25">
+            TFOクリエイティブスタジオは、その未来を支えるために、
+            AIを実践的な力へ変換する<strong>教育・技術・コンテンツ</strong>を提供します。
+            自ら使いこなせる力を育てる仕組みを提供します。
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       MISSION & VALUES
+  ============================== -->
+  <section class="section mission-section" id="mission">
+    <div class="section-inner">
+
+      <div class="mission-block reveal-up">
+        <div class="mission-tag">MISSION</div>
+        <h2 class="mission-title">
+          AIを誰もが使いこなせる<br class="br-desktop"><span class="red">社会をつくる。</span>
+        </h2>
+        <p class="mission-body">
+          教育・ソフトウェア・クラウド・データ分析・コンテンツ制作を通じて、<br />
+          AI時代に必要なスキルと価値創造力を広く届ける。
+        </p>
+      </div>
+
+      <div class="values-grid">
+        <div class="section-label reveal" style="grid-column:1/-1;">VALUES</div>
+
+        <div class="value-card reveal-up" data-delay="0">
+          <div class="value-num">01</div>
+          <div class="value-name">Practical First</div>
+          <div class="value-sub">実践に使えることを最優先に</div>
+          <p>すぐに成果につながる知識・仕組み・コンテンツを提供します。</p>
+        </div>
+        <div class="value-card reveal-up" data-delay="0.1">
+          <div class="value-num">02</div>
+          <div class="value-name">Clarity</div>
+          <div class="value-sub">複雑をシンプルにする</div>
+          <p>難しい技術を、誰でも理解できる形に翻訳します。</p>
+        </div>
+        <div class="value-card reveal-up" data-delay="0.2">
+          <div class="value-num">03</div>
+          <div class="value-name">Creative Engineering</div>
+          <div class="value-sub">創造と技術の融合</div>
+          <p>教育・AI開発・データ分析・コンテンツ制作を横断し、新しい価値を生み出します。</p>
+        </div>
+        <div class="value-card reveal-up" data-delay="0.3">
+          <div class="value-num">04</div>
+          <div class="value-name">Empowerment</div>
+          <div class="value-sub">自走できる力を育てる</div>
+          <p>請負や代行ではなく、自ら成果を出せる力を育てる仕組みを提供します。</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       SERVICES
+  ============================== -->
+  <section class="section services-section" id="services">
+    <div class="section-inner">
+
+      <div class="section-label reveal">SERVICES</div>
+      <h2 class="section-title reveal-left">事業内容<span class="red">.</span></h2>
+
+      <div class="services-list">
+
+        <div class="service-item reveal-up" data-delay="0">
+          <div class="service-index">01</div>
+          <div class="service-body">
+            <div class="service-en">AI Education</div>
+            <h3 class="service-ja">AI教育</h3>
+            <ul>
+              <li>オンライン講座制作・販売</li>
+              <li>企業向け教材・学習コンテンツ制作</li>
+              <li>AIリテラシー教育コンテンツ</li>
+            </ul>
+          </div>
+          <div class="service-line"></div>
+        </div>
+
+        <div class="service-item reveal-up" data-delay="0.08">
+          <div class="service-index">02</div>
+          <div class="service-body">
+            <div class="service-en">AI Software Development</div>
+            <h3 class="service-ja">AIソフトウェア開発</h3>
+            <ul>
+              <li>AIアプリケーションの企画・設計</li>
+              <li>自律型エージェント業務自動化設計</li>
+            </ul>
+          </div>
+          <div class="service-line"></div>
+        </div>
+
+        <div class="service-item reveal-up" data-delay="0.16">
+          <div class="service-index">03</div>
+          <div class="service-body">
+            <div class="service-en">Cloud Services</div>
+            <h3 class="service-ja">クラウドサービス構築</h3>
+            <ul>
+              <li>クラウドサービスの提供</li>
+            </ul>
+          </div>
+          <div class="service-line"></div>
+        </div>
+
+        <div class="service-item reveal-up" data-delay="0.24">
+          <div class="service-index">04</div>
+          <div class="service-body">
+            <div class="service-en">Data Analytics</div>
+            <h3 class="service-ja">データ分析</h3>
+            <ul>
+              <li>データ可視化・分析設計</li>
+            </ul>
+          </div>
+          <div class="service-line"></div>
+        </div>
+
+        <div class="service-item reveal-up" data-delay="0.32">
+          <div class="service-index">05</div>
+          <div class="service-body">
+            <div class="service-en">Content Production</div>
+            <h3 class="service-ja">コンテンツ制作</h3>
+            <ul>
+              <li>各種コンテンツ制作</li>
+              <li>SNS配信・動画制作</li>
+              <li>Webコンテンツ・テクニカルライティング</li>
+            </ul>
+          </div>
+          <div class="service-line"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       ABOUT / REP MESSAGE
+  ============================== -->
+  <section class="section about-section" id="about">
+    <div class="section-inner">
+
+      <div class="section-label reveal">ABOUT</div>
+
+      <div class="about-grid">
+        <div class="about-left reveal-left">
+          <h2 class="section-title">代表<br>メッセージ<span class="red">.</span></h2>
+          <div class="rep-name reveal-up" data-delay="0.3">
+            <span class="rep-title-label">代表</span>
+            <span class="rep-kanji">尾高 富美子</span>
+            <span class="rep-roman">Fumiko Otaka</span>
+          </div>
+          <div class="about-logo-bg">TFO</div>
+        </div>
+        <div class="about-right">
+          <blockquote class="rep-message">
+            <p class="reveal-up" data-delay="0">
+              AIの進化は、私たちの働き方を根本から変えつつあります。
+              単純作業はAIが担い、人間はより創造的で高度な仕事に集中できるようになります。
+            </p>
+            <p class="reveal-up" data-delay="0.1">
+              この変化は、特別な人だけのものではありません。
+              誰もがAIを使いこなし、自分の価値を高めていく時代が始まっています。
+            </p>
+            <p class="reveal-up" data-delay="0.2">
+              TFOクリエイティブスタジオは、AIを<em>「難しい技術」</em>ではなく
+              <em>「誰もが扱える力」</em>へと変換し、
+              個人と企業が自走しながら成長できる未来を支えたいと考えています。
+            </p>
+            <p class="reveal-up" data-delay="0.3">
+              私たちは、受託開発や運用代行、個別指導といった請負サービスは行いません。
+              その代わりに、<strong>学べる仕組み・使える仕組み・成果につながる仕組み</strong>を提供し、
+              あなた自身の力でステップアップできる環境をつくります。
+            </p>
+            <p class="reveal-up sig-line" data-delay="0.4">
+              AIを使いこなすことで、人はもっと自由に、もっと創造的に、<br>
+              もっと価値ある仕事ができる。その未来を一緒につくっていきましょう。
+            </p>
+          </blockquote>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       CONTACT
+  ============================== -->
+  <section class="section contact-section" id="contact">
+    <div class="section-inner contact-inner">
+      <div class="contact-bg-text">CONTACT</div>
+      <div class="section-label reveal">CONTACT</div>
+      <h2 class="contact-title reveal-up">一緒に未来を<br><span class="red">つくりませんか。</span></h2>
+      <p class="contact-body reveal-up" data-delay="0.1">
+        ご質問・ご相談はお気軽にどうぞ。
+      </p>
+      <a href="mailto:info@tfo-creative.studio" class="btn contact-btn reveal-up" data-delay="0.2">
+        GET IN TOUCH
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       FOOTER
+  ============================== -->
+  <footer class="footer">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="pic/logo1.svg" alt="TFO Logo" />
+        </div>
+        <div class="footer-name">TFO Creative Studio</div>
+        <p class="footer-tagline">AIを誰もが使いこなせる社会をつくる。</p>
+      </div>
+
+      <nav class="footer-nav">
+        <div class="footer-nav-col">
+          <div class="footer-nav-head">NAVIGATE</div>
+          <a href="#top">Top</a>
+          <a href="#philosophy">Philosophy</a>
+          <a href="#mission">Mission &amp; Values</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-nav-col">
+          <div class="footer-nav-head">SERVICES</div>
+          <a href="#services">AI Education</a>
+          <a href="#services">AI Software</a>
+          <a href="#services">Cloud Services</a>
+          <a href="#services">Data Analytics</a>
+          <a href="#services">Content Production</a>
+        </div>
+      </nav>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2025 TFO Creative Studio. All rights reserved.</span>
+      <a href="#top" class="back-to-top" aria-label="ページトップへ">
+        <span>TOP</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M6 10V2M6 2L2 6M6 2L10 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+
+  <script src="main.js"></script>
 </body>
 </html>
