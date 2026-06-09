@@ -1230,3 +1230,97 @@ body {
   }
 
 }
+
+/* ===========================
+   LOADING OVERLAY
+   =========================== */
+.loader {
+  position: fixed;
+  inset: 0;
+  background: #050606;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+}
+
+.loader-cover {
+  position: absolute;
+  inset: 0;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 2;
+}
+
+.loader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+  padding: 0 40px;
+}
+
+/* 会社名 */
+.loader-company {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  letter-spacing: 10px;
+  color: var(--red);
+  font-weight: 700;
+  margin-bottom: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  border-right: 2px solid transparent;
+}
+
+/* タイプライター各行 */
+.loader-lines {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.ll {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(64px, 9vw, 110px);
+  line-height: 0.92;
+  letter-spacing: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  display: block;
+  border-right: 3px solid transparent;
+}
+
+.ll1 { color: #ffffff; }
+.ll2 { color: var(--gray-text); }
+.ll3 { color: var(--red); }
+
+/* プログレスバー */
+.loader-bar-wrap {
+  width: 100%;
+  min-width: 280px;
+  height: 1px;
+  background: #1a1e1e;
+  overflow: hidden;
+}
+
+.loader-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--red);
+}
+
+.loader.done {
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .loader-inner {
+    padding: 0 24px;
+  }
+}

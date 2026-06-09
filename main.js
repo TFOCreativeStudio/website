@@ -1,4 +1,106 @@
 /* ===========================
+   LOADING ANIMATION — Typewriter (Case C)
+   TFO CREATIVE STUDIO → CREATE → YOUR → VISION → bar → 赤カバー → サイト表示
+   =========================== */
+(function initLoader() {
+  const loader      = document.getElementById('loader');
+  const loaderBar   = document.getElementById('loaderBar');
+  const loaderCover = document.getElementById('loaderCover');
+  const company     = document.querySelector('.loader-company');
+  const ll1         = document.querySelector('.ll1');
+  const ll2         = document.querySelector('.ll2');
+  const ll3         = document.querySelector('.ll3');
+
+  if (!loader) return;
+
+  document.body.style.overflow = 'hidden';
+
+  /* タイプライター: el の自然な幅をpxで測定してからアニメーション */
+  function typeEl(el, duration, cb) {
+    const steps = 20;
+    const interval = duration / steps;
+    let step = 0;
+    // 一瞬 max-content で実幅を測る
+    el.style.width = 'max-content';
+    el.style.overflow = 'visible';
+    const fullW = el.getBoundingClientRect().width;
+    el.style.overflow = 'hidden';
+    el.style.width = '0px';
+    el.style.borderRightColor = '#d60019';
+    const t = setInterval(() => {
+      step++;
+      el.style.width = (fullW * step / steps) + 'px';
+      if (step >= steps) {
+        clearInterval(t);
+        el.style.borderRightColor = 'transparent';
+        if (cb) cb();
+      }
+    }, interval);
+  }
+
+  /* プログレスバー 0→100% */
+  function runBar(duration, cb) {
+    const steps = 60;
+    const interval = duration / steps;
+    let step = 0;
+    const t = setInterval(() => {
+      step++;
+      loaderBar.style.width = (step / steps * 100) + '%';
+      if (step >= steps) {
+        clearInterval(t);
+        if (cb) cb();
+      }
+    }, interval);
+  }
+
+  /* 赤カバーでスライドアウト → ローダー非表示 */
+  function exitLoader() {
+    loaderCover.style.transition = 'transform 0.45s cubic-bezier(0.76, 0, 0.24, 1)';
+    loaderCover.style.transform  = 'scaleX(1)';
+    setTimeout(() => {
+      loaderCover.style.transformOrigin = 'right';
+      loaderCover.style.transform       = 'scaleX(0)';
+      loader.style.transition  = 'opacity 0.3s ease';
+      loader.style.opacity     = '0';
+      setTimeout(() => {
+        loader.style.display = 'none';
+        loader.classList.add('done');
+        document.body.style.overflow = '';
+      }, 320);
+    }, 460);
+  }
+
+  /* ── シーケンス ── */
+  setTimeout(() => {
+    // 1. 会社名 "TFO CREATIVE STUDIO" (19ch)
+    typeEl(company, 500, () => {
+      setTimeout(() => {
+        // 2. CREATE (6ch)
+        typeEl(ll1, 320, () => {
+          setTimeout(() => {
+            // 3. YOUR (4ch)
+            typeEl(ll2, 260, () => {
+              setTimeout(() => {
+                // 4. VISION (6ch)
+                typeEl(ll3, 320, () => {
+                  setTimeout(() => {
+                    // 5. プログレスバー
+                    runBar(550, () => {
+                      setTimeout(exitLoader, 150);
+                    });
+                  }, 180);
+                });
+              }, 80);
+            });
+          }, 80);
+        });
+      }, 80);
+    });
+  }, 100);
+})();
+
+
+/* ===========================
    TFO Creative Studio — JS
    =========================== */
 
