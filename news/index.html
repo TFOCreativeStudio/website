@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>お知らせ — TFO Creative Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@400;700&display=swap" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --red:       #d60019;
+      --red-mid:   #b00019;
+      --red-pale:  rgba(214, 0, 25, 0.07);
+      --red-line:  rgba(214, 0, 25, 0.18);
+      --black:     #0d0d0d;
+      --ink:       #1a1a1a;
+      --body-text: #3a3e3e;
+      --muted:     #888e8e;
+      --border:    #e4e6e6;
+      --bg:        #ffffff;
+      --bg-soft:   #f7f8f8;
+      --bg-rule:   #f0f1f1;
+    }
+
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Barlow', Arial, sans-serif;
+    }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--red-mid); }
+
+    /* ========================
+       HEADER
+    ======================== */
+    .ann-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 70px;
+      height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ann-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .ann-logo img {
+      width: 40px;
+      height: auto;
+      filter: invert(1) brightness(0);
+    }
+
+    .ann-logo-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: var(--black);
+    }
+
+    .ann-back {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 5px;
+      font-weight: 700;
+      color: var(--red);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .ann-back:hover { opacity: 0.65; }
+    .ann-back:hover svg { transform: translateX(-3px); }
+    .ann-back svg { transition: transform 0.2s; }
+
+    /* ========================
+       HERO STRIP
+    ======================== */
+    .ann-hero {
+      background: var(--bg-soft);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 70px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ann-hero::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--red);
+    }
+
+    .ann-hero::after {
+      content: 'NEWS';
+      position: absolute;
+      right: -10px;
+      bottom: -20px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 200px;
+      letter-spacing: -8px;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(214,0,25,0.06);
+      pointer-events: none;
+      line-height: 1;
+      z-index: 1;
+    }
+
+    .ann-hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease 0s forwards;
+    }
+    .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--red); }
+    .breadcrumb-sep { color: var(--border); }
+    .breadcrumb-current { color: var(--red); }
+
+    .ann-hero-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 10px;
+      color: var(--red);
+      font-weight: 700;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease 0.1s forwards;
+    }
+
+    .ann-hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 7vw, 88px);
+      line-height: 0.95;
+      letter-spacing: 3px;
+      color: var(--black);
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
+    }
+    .ann-hero-title .dot { color: var(--red); }
+
+    .ann-hero-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px;
+      letter-spacing: 4px;
+      color: var(--muted);
+      font-weight: 700;
+      padding-left: 14px;
+      border-left: 2px solid var(--border);
+      opacity: 0;
+      animation: fadeIn 0.5s ease 0.5s forwards;
+    }
+
+    /* ========================
+       MAIN
+    ======================== */
+    .ann-main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 72px 70px 120px;
+    }
+
+    /* ========================
+       COMING SOON BOX
+    ======================== */
+    .news-status-box {
+      position: relative;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      padding: 80px 40px;
+      text-align: center;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.4s forwards;
+    }
+
+    /* diagonal pattern */
+    .news-status-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 18px,
+        rgba(214,0,25,0.025) 18px,
+        rgba(214,0,25,0.025) 19px
+      );
+      pointer-events: none;
+    }
+
+    /* corner accents */
+    .corner-tl, .corner-tr, .corner-bl, .corner-br {
+      position: absolute;
+      width: 20px; height: 20px;
+    }
+    .corner-tl { top:-1px; left:-1px;   border-top:2px solid var(--red); border-left:2px solid var(--red); }
+    .corner-tr { top:-1px; right:-1px;  border-top:2px solid var(--red); border-right:2px solid var(--red); }
+    .corner-bl { bottom:-1px; left:-1px;  border-bottom:2px solid var(--red); border-left:2px solid var(--red); }
+    .corner-br { bottom:-1px; right:-1px; border-bottom:2px solid var(--red); border-right:2px solid var(--red); }
+
+    .news-watermark {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 200px;
+      letter-spacing: -12px;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(214,0,25,0.04);
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    /* icon */
+    .news-icon {
+      width: 52px; height: 52px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      background: var(--bg-soft);
+      position: relative;
+      animation: iconPulse 3s ease-in-out infinite 1.5s;
+    }
+
+    @keyframes iconPulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(214,0,25,0); }
+      50%      { box-shadow: 0 0 0 10px rgba(214,0,25,0.06); }
+    }
+
+    .news-status-dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      margin-right: 9px;
+      vertical-align: middle;
+      animation: dotBlink 1.6s ease-in-out infinite;
+    }
+
+    @keyframes dotBlink {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%     { opacity:0.25; transform:scale(0.65); }
+    }
+
+    .news-status-ja {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .news-status-en {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(32px, 5vw, 52px);
+      letter-spacing: 14px;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(214,0,25,0.35);
+      position: relative;
+      animation: flicker 6s infinite 2s;
+    }
+
+    .news-status-sub {
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      position: relative;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+    }
+
+    /* ========================
+       FOOTER
+    ======================== */
+    .ann-footer {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      padding: 28px 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ann-footer-copy {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    .ann-footer-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .ann-footer-link:hover { color: var(--red); }
+
+    /* ========================
+       KEYFRAMES
+    ======================== */
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes flicker {
+      0%,97%,100% { opacity: 1; }
+      98% { opacity: 0.6; }
+      99% { opacity: 1; }
+    }
+
+    /* ========================
+       RESPONSIVE
+    ======================== */
+    @media (max-width: 768px) {
+      .ann-header { padding: 0 20px; height: 60px; }
+      .ann-logo-text { display: none; }
+      .ann-hero { padding: 48px 24px 44px; }
+      .ann-main { padding: 48px 20px 80px; }
+      .news-status-box { padding: 56px 20px; }
+      .news-watermark { font-size: 110px; }
+      .ann-footer { padding: 24px 20px; flex-direction: column; gap: 10px; text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="ann-header">
+    <a href="/" class="ann-logo">
+      <img src="/pic/logo1.svg" alt="TFO Logo" />
+      <span class="ann-logo-text">TFO CREATIVE STUDIO</span>
+    </a>
+    <a href="/" class="ann-back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      BACK TO TOP
+    </a>
+  </header>
+
+  <!-- Hero strip -->
+  <div class="ann-hero">
+    <div class="ann-hero-inner">
+      <div class="breadcrumb">
+        <a href="/">TOP</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">お知らせ</span>
+      </div>
+      <div class="ann-hero-label">INFORMATION</div>
+      <h1 class="ann-hero-title">お知らせ<span class="dot">.</span></h1>
+      <p class="ann-hero-sub">News &amp; Updates</p>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <main class="ann-main">
+
+    <div class="news-status-box">
+      <div class="corner-tl"></div>
+      <div class="corner-tr"></div>
+      <div class="corner-bl"></div>
+      <div class="corner-br"></div>
+      <div class="news-watermark">NEWS</div>
+
+      <div class="news-icon">
+        <svg width="20" height="20" viewBox="0 0 22 22" fill="none">
+          <rect x="3" y="5" width="16" height="13" rx="1.5" stroke="#d60019" stroke-width="1.5"/>
+          <path d="M3 9h16" stroke="#d60019" stroke-width="1.5"/>
+          <path d="M7 3v4M15 3v4" stroke="#d60019" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <p class="news-status-ja">
+        <span class="news-status-dot"></span>現在掲載中のお知らせはありません
+      </p>
+      <p class="news-status-en">COMING SOON</p>
+      <p class="news-status-sub">We'll be posting updates here soon. Stay tuned.</p>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="ann-footer">
+    <span class="ann-footer-copy">&copy; 2026 TFO Creative Studio Co., Ltd. All rights reserved.</span>
+    <a href="/" class="ann-footer-link">tfocreativestudio.com</a>
+  </footer>
+
+</body>
+</html>
